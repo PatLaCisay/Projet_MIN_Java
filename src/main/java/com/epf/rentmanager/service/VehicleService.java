@@ -27,19 +27,21 @@ public class VehicleService {
 	}
 	
 	
-	public long create(Vehicle vehicle) throws ServiceException {
+	/*public long create(long id, String constructeur, int nb_places) throws ServiceException {
 		// TODO: créer un véhicule
-		
+		return new Vehicle(id, constructeur, nb_places);
 	}
 
 	public Vehicle findById(long id) throws ServiceException {
 		// TODO: récupérer un véhicule par son id
-		
+		Vehicle vehicle = new Vehicle();
+		return vehicle.getId(id);
 	}
 
 	public List<Vehicle> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
 		
 	}
+	*/
 	
 }

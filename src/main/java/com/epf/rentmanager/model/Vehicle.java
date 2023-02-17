@@ -1,14 +1,14 @@
 package com.epf.rentmanager.model;
 
-public class Vehicule {
+public class Vehicle {
 
-    private final long id;
+    private long id;
 
     private String constructeur;
 
     private int nb_places;
 
-    public Vehicule(long id, String constructeur, int nb_places) {
+    public Vehicle(long id, String constructeur, int nb_places) {
         this.id = id;
         this.constructeur = constructeur;
         this.nb_places = nb_places;
@@ -29,5 +29,19 @@ public class Vehicule {
         this.nb_places = nb_places;
     }
 
+    public Vehicle() {
+    }
 
+    public long getId(long id) {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", constructeur='" + constructeur + '\'' +
+                ", nb_places=" + nb_places +
+                '}';
+    }
 }

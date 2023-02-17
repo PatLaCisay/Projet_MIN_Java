@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import org.h2.tools.DeleteDbFiles;
 
 import com.epf.rentmanager.persistence.ConnectionManager;
