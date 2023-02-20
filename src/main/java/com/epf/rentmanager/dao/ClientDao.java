@@ -41,10 +41,6 @@ public class ClientDao {
 		return 0;
 	}
 
-	public Client findById(long id, String prenom, String nom, LocalDate naissance, String email) throws DaoException {
-		return new Client(id, prenom, nom, naissance, email);
-	}
-
 	public List<Client> findAll() throws DaoException, SQLException {
 		List<Client> clients = new ArrayList<Client>();
 		try {
@@ -55,7 +51,7 @@ public class ClientDao {
 			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
 
 			while(rs.next()){
-				long id = rs.getInt("id");
+				long id = rs.getLong("id");
 				String firstName = rs.getString("prenom");
 				String lastName = rs.getString("nom");
 				String email = rs.getString("email");
@@ -71,6 +67,38 @@ public class ClientDao {
 		}
 
 		return clients;
+	}
+
+	public Client findById(long id) throws DaoException, SQLException {
+
+		Client client = new Client();
+
+		try {
+			Connection connection = getConnection();
+
+			Statement statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
+
+			while(rs.next()){
+				if (rs.getLong("id")==id){
+					String firstName = rs.getString("prenom");
+					String lastName = rs.getString("nom");
+					String email = rs.getString("email");
+					LocalDate date = rs.getDate("naissance").toLocalDate();
+					client =  new Client(id, firstName, lastName, date, email);
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		if (client.getFirstName().isEmpty())
+		{
+			throw new DaoException();
+		}
+		return client;
 	}
 
 }

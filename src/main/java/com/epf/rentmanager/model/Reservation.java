@@ -1,48 +1,78 @@
 package com.epf.rentmanager.model;
+
 import java.time.LocalDate;
+
+
+
 public class Reservation {
-
     private long id;
+    private long clientId;
+    private long vehicleId;
+    private LocalDate start;
+    private LocalDate end;
 
-    private Client client;
+    public Reservation(long pid, long clientId, long vehicleId, LocalDate start, LocalDate end) {
 
-    private Vehicle vehicle;
+        this.id = pid;
+        this.clientId = clientId;
+        this.vehicleId = vehicleId;
+        this.start = start;
+        this.end= end;
 
-    private LocalDate startDate;
-
-    private LocalDate endDate;
-
-
-
-    public Client getClient() {
-        return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public Reservation(long clientId, long vehicleId, LocalDate start, LocalDate end) {
+
+        clientId = clientId;
+        vehicleId = vehicleId;
+        start = start;
+        end= end;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public long getId() {
+        return this.id;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public long getClientId() {
+        return clientId;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public void setClientId(long clientId) {
+        this.clientId = clientId;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public long getVehicleId() {
+        return vehicleId;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public void setVehicleId(long vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public LocalDate getDebut() {
+        return start;
+    }
+
+    public void setDebut(LocalDate start) {
+        this.start = start;
+    }
+
+    public LocalDate getFin() {
+        return end;
+    }
+
+    public void setFin(LocalDate end) {
+        this.end = end;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", vehicleId=" + vehicleId +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
     }
 }

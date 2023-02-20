@@ -3,14 +3,16 @@ package com.epf.rentmanager.model;
 import java.time.LocalDate;
 
 public class Client {
-    private final long id;
+    private long id;
     private String firstName;
     private String lastName;
 
     private String email;
 
     private java.time.LocalDate birthDate;
+    public Client(){
 
+    }
 
     public Client(long id, String firstName, String lastName, LocalDate birthDate, String email) {
         this.id = id;
