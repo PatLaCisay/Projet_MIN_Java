@@ -34,7 +34,8 @@ public class HomeServlet extends HttpServlet {
 			request.setAttribute("usersCount", this.clientService.getInstance().count());
 
 			request.setAttribute("vehiclesCount", this.vehicleService.getInstance().count());
-			//request.setAttribute("nbRents", this.reservationService.count());
+
+			request.setAttribute("reservationsCount", this.reservationService.getInstance().count());
 
 
 		} catch (ServiceException e) {

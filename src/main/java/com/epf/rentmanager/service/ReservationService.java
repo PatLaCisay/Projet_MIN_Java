@@ -47,5 +47,13 @@ public class ReservationService {
             throw new RuntimeException(e);
         }
     }
+    public long count() throws ServiceException {
+        try {
+            return this.reservationDao.count();
+        }catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }
