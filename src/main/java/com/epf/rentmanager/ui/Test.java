@@ -11,7 +11,7 @@ public class Test {
     {
         try{
             List<Client> clients = ClientService.getInstance().findAll();
-            System.out.println(clients.size());
+            System.out.println(clients);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }

@@ -5,6 +5,7 @@ D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDat
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
+D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserServlet.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java

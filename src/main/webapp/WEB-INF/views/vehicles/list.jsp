@@ -37,11 +37,10 @@
                                 <tr>
 
                                 <c:forEach items="${vehicles}" var="vehicle">
-                                    <td>${vehicle.id}.</td>
+                                    <td></td>
                                     <td>${vehicle.constructeur}</td>
-                                    <td>${vehicle.modele}</td>
-                                    <td>${vehicle.seats}</td>
-                                    <!--<td>John Doe</td>-->
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <a class="btn btn-primary disabled" href="car-detail.html">
                                             <i class="fa fa-play"></i>
