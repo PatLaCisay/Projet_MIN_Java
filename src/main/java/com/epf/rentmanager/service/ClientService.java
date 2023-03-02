@@ -54,5 +54,13 @@ public class ClientService {
 			throw new RuntimeException(e);
 		}
 	}
+	public long count() throws ServiceException {
+		try {
+			return this.clientDao.count();
+		}catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 }

@@ -42,4 +42,12 @@ public class VehicleService {
 			throw new RuntimeException(e);
 		}
 	}
+	public long count() throws ServiceException {
+		try {
+			return this.vehicleDao.count();
+		}catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
