@@ -30,8 +30,8 @@ public class VehicleDao {
 	
 	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructor, seats) VALUES(?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructor, seats FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructor, seats FROM Vehicle;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
 	private static final String COUNT_VEHICLES_QUERY = "SELECT COUNT(id) AS vehiclesCount FROM Vehicle;";
 	
 	public long create(Vehicle vehicle) throws DaoException {
@@ -72,7 +72,7 @@ public class VehicleDao {
 	}
 
 	public List<Vehicle> findAll() throws DaoException {
-		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		List<Vehicle> vehicles = new ArrayList<>();
 		try {
 			Connection connection = getConnection();
 

@@ -21,11 +21,11 @@ public class Vehicle {
         this.constructor = constructor;
     }
 
-    public int getNbr_places() {
+    public int getSeats() {
         return seats;
     }
 
-    public void setNbr_places(int seats) {
+    public void setSeats(int seats) {
         this.seats = seats;
     }
 
@@ -34,6 +34,10 @@ public class Vehicle {
 
     public long getId(long id) {
         return this.id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     @Override
