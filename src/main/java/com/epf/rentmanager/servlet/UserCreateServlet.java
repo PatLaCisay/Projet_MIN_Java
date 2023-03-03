@@ -41,12 +41,11 @@ public class UserCreateServlet extends HttpServlet {
 
         try {
             this.clientService.getInstance().create(client);
-            response.sendRedirect("http://localhost:8080/users");
+            response.sendRedirect("http://localhost:8080/rentmanager/users");
         } catch (ServiceException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
 
-        this.doGet(request, response);
     }
 }
