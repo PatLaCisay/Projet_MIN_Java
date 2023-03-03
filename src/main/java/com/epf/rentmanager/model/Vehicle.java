@@ -4,29 +4,29 @@ public class Vehicle {
 
     private long id;
 
-    private String constructeur;
+    private String constructor;
 
-    private int nb_places;
+    private int seats;
 
-    public Vehicle(long id, String constructeur, int nb_places) {
+    public Vehicle(long id, String constructor, int seats) {
         this.id = id;
-        this.constructeur = constructeur;
-        this.nb_places = nb_places;
+        this.constructor = constructor;
+        this.seats = seats;
     }
-    public String getConstructeur() {
-        return constructeur;
+    public String getConstructor() {
+        return constructor;
     }
 
-    public void setConstructeur(String constructeur) {
-        this.constructeur = constructeur;
+    public void setConstructor(String constructor) {
+        this.constructor = constructor;
     }
 
     public int getNbr_places() {
-        return nb_places;
+        return seats;
     }
 
-    public void setNbr_places(int nb_places) {
-        this.nb_places = nb_places;
+    public void setNbr_places(int seats) {
+        this.seats = seats;
     }
 
     public Vehicle() {
@@ -40,8 +40,8 @@ public class Vehicle {
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
-                ", constructeur='" + constructeur + '\'' +
-                ", nb_places=" + nb_places +
+                ", constructor='" + constructor + '\'' +
+                ", seats=" + seats +
                 '}';
     }
 }

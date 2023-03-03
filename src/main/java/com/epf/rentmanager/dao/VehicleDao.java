@@ -28,10 +28,10 @@ public class VehicleDao {
 		return instance;
 	}
 	
-	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructor, seats) VALUES(?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructor, seats FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructor, seats FROM Vehicle;";
 	private static final String COUNT_VEHICLES_QUERY = "SELECT COUNT(id) AS vehiclesCount FROM Vehicle;";
 	
 	public long create(Vehicle vehicle) throws DaoException {
@@ -54,9 +54,9 @@ public class VehicleDao {
 
 			while(rs.next()){
 				if (rs.getLong("id")==id){
-					String constructeur = rs.getString("constructeur");
-					int nb_places = rs.getInt("nb_places");
-					vehicle =  new Vehicle(id, constructeur, nb_places);
+					String constructor = rs.getString("constructeur");
+					int seats = rs.getInt("nb_places");
+					vehicle =  new Vehicle(id, constructor, seats);
 				}
 			}
 
@@ -64,7 +64,7 @@ public class VehicleDao {
 			e.printStackTrace();
 			throw new DaoException();
 		}
-		if (vehicle.getConstructeur().isEmpty())
+		if (vehicle.getConstructor().isEmpty())
 		{
 			throw new DaoException();
 		}
@@ -82,10 +82,10 @@ public class VehicleDao {
 
 			while(rs.next()){
 				long id = rs.getLong("id");
-				String constructeur = rs.getString("constructeur");
-				int nb_places = rs.getInt("nb_places");
+				String constructor = rs.getString("constructeur");
+				int seats = rs.getInt("nb_places");
 
-				vehicles.add( new Vehicle(id, constructeur, nb_places));
+				vehicles.add( new Vehicle(id, constructor, seats));
 			}
 
 		} catch (SQLException e) {

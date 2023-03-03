@@ -37,9 +37,9 @@
                                 <tr>
 
                                 <c:forEach items="${vehicles}" var="vehicle">
-                                    <td></td>
-                                    <td>${vehicle.constructeur}</td>
-                                    <td></td>
+                                    <td>${vehicle.id}</td>
+                                    <td>${vehicle.constructor}</td>
+                                    <td>${vehicle.seats}</td>
                                     <td></td>
                                     <td>
                                         <a class="btn btn-primary disabled" href="car-detail.html">

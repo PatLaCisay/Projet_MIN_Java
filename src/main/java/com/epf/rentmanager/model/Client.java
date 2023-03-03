@@ -29,11 +29,11 @@ public class Client {
         this.firstName = firstName;
     }
 
-    public String getNom() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setNom(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 

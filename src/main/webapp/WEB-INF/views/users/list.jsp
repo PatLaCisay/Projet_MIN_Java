@@ -36,11 +36,11 @@
                                 </tr>
                                 <c:forEach var="client"  items="${requestScope['listUsers']}" >
                                     <tr>
-                                        <td>${client['id']}</td>
-                                        <td></td>
-                                        <td>${client['firstName']}</td>
-                                        <td>${client['email']}</td>
-                                        <td>${client['birthDate']}</td>
+                                        <td>${client.id}</td>
+                                        <td>${client.lastName}</td>
+                                        <td>${client.firstName}</td>
+                                        <td>${client.email}</td>
+                                        <td>${client.birthDate}</td>
                                         <td>
                                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=1">
                                             <i class="fa fa-play"></i>

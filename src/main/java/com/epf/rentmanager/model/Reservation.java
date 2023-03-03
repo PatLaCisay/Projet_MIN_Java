@@ -49,19 +49,19 @@ public class Reservation {
         this.vehicleId = vehicleId;
     }
 
-    public LocalDate getDebut() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setDebut(LocalDate start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public LocalDate getFin() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setFin(LocalDate end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 
