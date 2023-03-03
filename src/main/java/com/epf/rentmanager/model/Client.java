@@ -19,6 +19,14 @@ public class Client {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.email = email;
+    }
+
+    public Client(String firstName, String lastName, LocalDate birthDate, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.email = email;
     }
 
     public String getFirstName() {

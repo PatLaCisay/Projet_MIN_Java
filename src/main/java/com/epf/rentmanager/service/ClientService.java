@@ -27,9 +27,12 @@ public class ClientService {
 	}
 	
 	
-	public long create(Client client) throws ServiceException {
-		// TODO: créer un client
-		return 0;
+	public void create(Client client) throws ServiceException {
+		try {
+			ClientDao.getInstance().create(client);
+		} catch (DaoException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 

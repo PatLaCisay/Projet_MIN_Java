@@ -34,8 +34,25 @@ public class ClientDao {
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 	private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS clientsCount FROM Client;";
 	
-	public long create(Client client) throws DaoException {
-		return 0;
+	public void create(Client client) throws DaoException {
+		Connection connexion = null;
+		try {
+			connexion = ConnectionManager.getConnection();
+
+			PreparedStatement pstmt = connexion.prepareStatement(CREATE_CLIENT_QUERY);
+
+			pstmt.setString(1, client.getLastName());
+			pstmt.setString(2, client.getFirstName());
+			pstmt.setString(3, client.getEmail());
+			pstmt.setDate(4, Date.valueOf(client.getBirthDate()));
+
+			pstmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 	
 	public long delete(Client client) throws DaoException {
@@ -45,9 +62,9 @@ public class ClientDao {
 	public List<Client> findAll() throws DaoException, SQLException {
 		List<Client> clients = new ArrayList<Client>();
 		try {
-			Connection connection = getConnection();
+			Connection connexionection = getConnection();
 
-			Statement statement = connection.createStatement();
+			Statement statement = connexionection.createStatement();
 
 			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
 
@@ -75,9 +92,9 @@ public class ClientDao {
 		Client client = new Client();
 
 		try {
-			Connection connection = getConnection();
+			Connection connexionection = getConnection();
 
-			Statement statement = connection.createStatement();
+			Statement statement = connexionection.createStatement();
 
 			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
 
@@ -105,8 +122,8 @@ public class ClientDao {
 		int clientsCount = 1;
 		try {
 
-			Connection conn = ConnectionManager.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(COUNT_CLIENTS_QUERY);
+			Connection connexion = ConnectionManager.getConnection();
+			PreparedStatement pstmt = connexion.prepareStatement(COUNT_CLIENTS_QUERY);
 
 			ResultSet rs = pstmt.executeQuery();
 
