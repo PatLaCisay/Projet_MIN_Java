@@ -3,9 +3,11 @@ package com.epf.rentmanager.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.VehicleDao;
@@ -49,5 +51,13 @@ public class VehicleService {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public void create(Vehicle vehicle) throws ServiceException {
+		try {
+			VehicleDao.getInstance().create(vehicle);
+		} catch (DaoException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -46,11 +46,12 @@ public class FillDatabase {
 
             // Remplissage de la base avec des Vehicules et des Clients
             Statement stmt = connection.createStatement();
-            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Renault', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Peugeot', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Seat', 4)");
-            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places) VALUES('Nissan', 4)");
-            
+            stmt.execute("ALTER TABLE Vehicle ADD modele Varchar(100)");
+            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places, modele) VALUES('Renault', 4, 'Clio')");
+            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places, modele) VALUES('Peugeot', 4, '107')");
+            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places, modele) VALUES('Seat', 4, 'Ibiza')");
+            stmt.execute("INSERT INTO Vehicle(constructeur, nb_places, modele) VALUES('Nissan', 4, 'Juke')");
+
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Dupont', 'Jean', 'jean.dupont@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Morin', 'Sabrina', 'sabrina.morin@email.com', '1988-01-22')");
             stmt.execute("INSERT INTO Client(nom, prenom, email, naissance) VALUES('Afleck', 'Steeve', 'steeve.afleck@email.com', '1988-01-22')");

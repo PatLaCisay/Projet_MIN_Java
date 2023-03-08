@@ -29,44 +29,30 @@
                         <!-- est d�crit an l'attribut "method" de la balise forme -->
                         <!-- action indique � quel "cible" sera envoyr la requ�te, ici notre Servlet qui sera bind sur -->
                         <!-- /vehicles/create -->
-                        <form class="form-horizontal" method="post">
+                        <form class="form-horizontal" method="post" action="/../rentmanager/cars/create">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="manufacturer" class="col-sm-2 control-label">Marque</label>
+                                    <label for="constructor" class="col-sm-2 control-label">Constructeur</label>
 
-									<!-- Pour r�up�rer la valeur rentr�e dans un champ input de cette jsp au niveau de votre servlet -->
-									<!-- vous devez passer par les methodes getParameter de l'objet request, est sp�cifiant la valeur -->
-									<!-- de l'attribut "name" de l'input -->
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Marque" required>
+                                        <input type="text" class="form-control" id="constructor" name="constructor" placeholder="Constructeur">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="modele" class="col-sm-2 control-label">Modele</label>
+                                    <label for="model" class="col-sm-2 control-label">Mod&#xE8;le</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" required>
+                                        <input type="text" class="form-control" id="model" name="model" placeholder="Mod&#xE8;le">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
+                                    <label for="seats" class="col-sm-2 control-label">Nombre de place</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="seats" name="seats" placeholder="Nombre de places" required>
+                                        <input type="number" class="form-control" id="seats" name="seats" placeholder="Nombre de place">
                                     </div>
                                 </div>
-                                <!--
-                                <div class="form-group">
-                                    <label for="owner" class="col-sm-2 control-label">Propriétaire</label>
 
-                                    <div class="col-sm-10">
-                                        <select class="form-control" id="owner" name="owner">
-                                            <option value="1">John Doe</option>
-                                            <option value="2">Jane Doe</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                -->
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">

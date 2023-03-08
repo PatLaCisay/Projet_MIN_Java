@@ -8,11 +8,21 @@ public class Vehicle {
 
     private int seats;
 
-    public Vehicle(long id, String constructor, int seats) {
+    private String model;
+
+    public Vehicle(long id, String constructor, int seats, String model) {
         this.id = id;
         this.constructor = constructor;
         this.seats = seats;
+        this.model = model;
     }
+
+    public Vehicle(String constructor, int seats, String model) {
+        this.constructor = constructor;
+        this.seats = seats;
+        this.model = model;
+    }
+
     public String getConstructor() {
         return constructor;
     }
@@ -47,5 +57,13 @@ public class Vehicle {
                 ", constructor='" + constructor + '\'' +
                 ", seats=" + seats +
                 '}';
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

@@ -16,5 +16,6 @@ D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserCreateServlet.java
+D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleCreateServlet.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 D:\EPF\4a\Java\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java

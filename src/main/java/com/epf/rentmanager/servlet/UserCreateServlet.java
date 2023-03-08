@@ -9,9 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import static java.time.LocalDate.parse;
 
 @WebServlet(name = "UserCreateServlet", value = "/users/create")
 public class UserCreateServlet extends HttpServlet {
