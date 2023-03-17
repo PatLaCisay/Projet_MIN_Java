@@ -3,28 +3,28 @@ package com.epf.rentmanager.model;
 import java.time.LocalDate;
 
 
-
 public class Reservation {
     private long id;
-    private long clientId;
-    private long vehicleId;
+
+    private Client client;
+    private Vehicle vehicle;
     private LocalDate start;
     private LocalDate end;
 
-    public Reservation(long pid, long clientId, long vehicleId, LocalDate start, LocalDate end) {
+    public Reservation(long id, Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
 
-        this.id = pid;
-        this.clientId = clientId;
-        this.vehicleId = vehicleId;
+        this.id = id;
+        this.client = client;
+        this.vehicle = vehicle;
         this.start = start;
         this.end= end;
 
     }
 
-    public Reservation(long clientId, long vehicleId, LocalDate start, LocalDate end) {
+    public Reservation(Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
 
-        clientId = clientId;
-        vehicleId = vehicleId;
+        client = client;
+        vehicle = vehicle;
         start = start;
         end= end;
     }
@@ -33,20 +33,20 @@ public class Reservation {
         return this.id;
     }
 
-    public long getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(long clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public long getVehicleId() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return this.vehicle;
     }
 
-    public void setVehicleId(long vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicleId(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public LocalDate getStart() {
@@ -69,8 +69,8 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", clientId=" + clientId +
-                ", vehicleId=" + vehicleId +
+                ", client=" + client +
+                ", vehicle=" + vehicle +
                 ", start=" + start +
                 ", end=" + end +
                 '}';
