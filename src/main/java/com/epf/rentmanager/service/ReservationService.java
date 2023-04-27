@@ -1,5 +1,6 @@
 package com.epf.rentmanager.service;
 
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
@@ -26,9 +27,12 @@ public class ReservationService {
     }
 
 
-    public long create(Reservation reservation) throws ServiceException {
-        // TODO: créer un reservation
-        return 0;
+    public void create(Reservation reservation) throws ServiceException {
+        try {
+            ReservationDao.getInstance().create(reservation);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

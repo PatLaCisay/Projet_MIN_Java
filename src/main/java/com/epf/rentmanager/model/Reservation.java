@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 
 public class Reservation {
@@ -10,6 +11,8 @@ public class Reservation {
     private Vehicle vehicle;
     private LocalDate start;
     private LocalDate end;
+
+    private static Random random;
 
     public Reservation(long id, Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
 
@@ -22,11 +25,10 @@ public class Reservation {
     }
 
     public Reservation(Client client, Vehicle vehicle, LocalDate start, LocalDate end) {
-
-        client = client;
-        vehicle = vehicle;
-        start = start;
-        end= end;
+        this.client = client;
+        this.vehicle = vehicle;
+        this.start = start;
+        this.end= end;
     }
 
     public long getId() {
@@ -43,10 +45,6 @@ public class Reservation {
 
     public Vehicle getVehicle() {
         return this.vehicle;
-    }
-
-    public void setVehicleId(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 
     public LocalDate getStart() {
