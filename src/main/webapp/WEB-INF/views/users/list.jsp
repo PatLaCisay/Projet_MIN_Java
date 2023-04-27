@@ -42,7 +42,7 @@
                                         <td>${client.email}</td>
                                         <td>${client.birthDate}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=1">
+                                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${client.id}">
                                             <i class="fa fa-play"></i>
                                             </a>
                                             <a class="btn btn-success disabled" href="#">
