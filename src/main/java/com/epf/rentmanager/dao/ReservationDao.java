@@ -11,15 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
-import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 
 import static com.epf.rentmanager.persistence.ConnectionManager.getConnection;
 
 public class ReservationDao {
 
 	private static ReservationDao instance = null;
+
+	private static ClientService clientService;
+	private static VehicleService vehicleService;
+
 	private ReservationDao() {}
 	public static ReservationDao getInstance() {
 		if(instance == null) {
@@ -36,8 +44,23 @@ public class ReservationDao {
 	private static final String FIND_RESERVATION_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
 	private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS reservationsCount FROM Reservation;";
 		
-	public long create(Reservation reservation) throws DaoException {
-		return 0;
+	public void create(Reservation reservation) throws DaoException {
+		Connection connexion = null;
+		try {
+			connexion = ConnectionManager.getConnection();
+
+			PreparedStatement pstmt = connexion.prepareStatement(CREATE_RESERVATION_QUERY);
+
+			pstmt.setLong(1, reservation.getClient().getId());
+			pstmt.setLong(2, reservation.getVehicle().getId());
+			pstmt.setDate(3, Date.valueOf(reservation.getStart()));
+			pstmt.setDate(4, Date.valueOf(reservation.getEnd()));
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public long delete(Reservation reservation) throws DaoException {
@@ -45,11 +68,11 @@ public class ReservationDao {
 	}
 
 	
-	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
+	public List<Reservation> findResaByClient(long client) throws DaoException {
 		return new ArrayList<Reservation>();
 	}
 	
-	public List<Reservation> findResaByReservationId(long vehicleId) throws DaoException {
+	public List<Reservation> findResaByReservation(long vehicle) throws DaoException {
 		return new ArrayList<Reservation>();
 	}
 
@@ -65,16 +88,18 @@ public class ReservationDao {
 
 			while (rs.next()) {
 				long id = rs.getLong("id");
-				long clientId = rs.getLong("client_id");
-				long vehicleId = rs.getLong("vehicle_id");
+				Client client = clientService.getInstance().findById(rs.getLong("client_id"));
+				Vehicle vehicle = vehicleService.getInstance().findById(rs.getLong("vehicle_id"));
 				LocalDate start = rs.getDate("debut").toLocalDate();
 				LocalDate end = rs.getDate("fin").toLocalDate();
 
-				reservations.add(new Reservation(id, clientId, vehicleId, start, end));
+				reservations.add(new Reservation(id, client, vehicle, start, end));
 			}
 			return reservations;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
 		}
 		return null;
 	}
@@ -89,18 +114,20 @@ public class ReservationDao {
 
 			rs.next();
 
-			Long reservationClientId = rs.getLong("client_id");
-			Long reservationVehicleId = rs.getLong("vehicle_id");
+			Client reservationClient = clientService.getInstance().findById(rs.getLong("client_id"));
+			Vehicle reservationVehicle = vehicleService.getInstance().findById(rs.getLong("vehicle_id"));
 			LocalDate reservationDebut = rs.getDate("debut").toLocalDate();
 			LocalDate reservationFin = rs.getDate("fin").toLocalDate();
 
-			Reservation reservation = new Reservation(id, reservationClientId, reservationVehicleId, reservationDebut, reservationFin);
+			Reservation reservation = new Reservation(id, reservationClient, reservationVehicle, reservationDebut, reservationFin);
 
 			return reservation;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
 		}
 	}
 	public long count() throws DaoException {
