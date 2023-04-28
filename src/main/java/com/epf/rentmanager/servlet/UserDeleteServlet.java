@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/users")
-public class UserServlet extends HttpServlet {
+@WebServlet("/users/delete")
 
+public class UserDeleteServlet extends HttpServlet {
     @Autowired
     ClientService clientService;
 
@@ -32,13 +32,14 @@ public class UserServlet extends HttpServlet {
 
         try {
 
-            request.setAttribute("listUsers", this.clientService.findAll()); //type List<Client>
+            int id = Integer.parseInt(request.getParameter("id"));
 
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
+            this.clientService.delete(id);
 
         } catch (ServiceException e) {
             e.printStackTrace();
         }
+        response.sendRedirect("http://localhost:8080/rentmanager/users");
 
     }
 }

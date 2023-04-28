@@ -1,5 +1,7 @@
 package com.epf.rentmanager.model;
 
+import java.util.Objects;
+
 public class Vehicle {
 
     private long id;
@@ -65,5 +67,18 @@ public class Vehicle {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return id == vehicle.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

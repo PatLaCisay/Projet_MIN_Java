@@ -1,37 +1,25 @@
 package com.epf.rentmanager.service;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import com.epf.rentmanager.dao.VehicleDao;
-import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
-import com.epf.rentmanager.model.Reservation;
-import com.epf.rentmanager.model.Vehicle;
-import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class VehicleService {
 
 	private VehicleDao vehicleDao;
-	public static VehicleService instance;
-	
-	private VehicleService() {
-		this.vehicleDao = VehicleDao.getInstance();
-	}
-	
-	public static VehicleService getInstance() {
-		if (instance == null) {
-			instance = new VehicleService();
-		}
-		
-		return instance;
+
+	private VehicleService(VehicleDao vehicleDao){
+		this.vehicleDao = vehicleDao;
 	}
 
 	public List<Vehicle> findAll() throws ServiceException {
 		try {
-			return VehicleDao.getInstance().findAll();
+			return this.vehicleDao.findAll();
 		} catch (DaoException e) {
 			throw new RuntimeException(e);
 		}
@@ -39,7 +27,7 @@ public class VehicleService {
 
 	public Vehicle findById(long id) throws ServiceException {
 		try {
-			return VehicleDao.getInstance().findById(id);
+			return this.vehicleDao.findById(id);
 		} catch (DaoException e) {
 			throw new RuntimeException(e);
 		}
@@ -55,9 +43,26 @@ public class VehicleService {
 
 	public void create(Vehicle vehicle) throws ServiceException {
 		try {
-			VehicleDao.getInstance().create(vehicle);
+			this.vehicleDao.create(vehicle);
 		} catch (DaoException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	public long delete(Vehicle vehicle) throws ServiceException {
+		try {
+			return this.vehicleDao.delete(vehicle);
+		}catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public long update(Vehicle vehicle) throws ServiceException {
+		try {
+			return this.vehicleDao.update(vehicle);
+		}catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+
 	}
 }

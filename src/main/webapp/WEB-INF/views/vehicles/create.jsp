@@ -24,11 +24,6 @@
                 <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box">
-                        <!-- form start -->
-                        <!-- Le  type de methode http qui sera appel� lors de action submit du formulaire -->
-                        <!-- est d�crit an l'attribut "method" de la balise forme -->
-                        <!-- action indique � quel "cible" sera envoyr la requ�te, ici notre Servlet qui sera bind sur -->
-                        <!-- /vehicles/create -->
                         <form class="form-horizontal" method="post" action="/../rentmanager/cars/create">
                             <div class="box-body">
                                 <div class="form-group">

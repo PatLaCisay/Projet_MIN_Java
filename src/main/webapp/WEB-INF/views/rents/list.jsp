@@ -1,6 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
-<html>
+<html >
 <%@include file="/WEB-INF/views/common/head.jsp"%>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -38,18 +38,18 @@
                                 <c:forEach items="${listReservations}" var="reservation">
 
                                         <td>${reservation.id}</td>
-                                        <td>${reservation.vehicle.constructor} ${reservation.vehicle.model}</td>
-                                        <td>${reservation.client.lastName} ${reservation.client.firstName}</td>
+                                        <td><a href="${pageContext.request.contextPath}/cars/details?id=${reservation.vehicle.id}">${reservation.vehicle.constructor} ${reservation.vehicle.model}</a></td>
+                                        <td><a href="${pageContext.request.contextPath}/users/details?id=${reservation.client.id}">${reservation.client.lastName} ${reservation.client.firstName}</a></td>
                                         <td>${reservation.start}</td>
                                         <td>${reservation.end}</td>
                                         <td>
-                                            <a class="btn btn-primary disabled" href="car-detail.html">
+                                            <a class="btn btn-primary" href="car-detail.html">
                                                 <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="${pageContext.request.contextPath}/rents/update?id=${reservation.id}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" onclick= "confirmDelete(${reservation.id})">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
@@ -66,7 +66,18 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        function confirmDelete(id) {
 
+            var response = confirm("Vous allez supprimer cette reservation, cette action est irreversible." +
+                "Veuillez vous assurer que cette suppression n'entrainera pas de problemes de comptabilite ou de suivi.");
+            if (response) {
+                window.location.href="http://localhost:8080/rentmanager/rents/delete?id="+id;
+            } else {
+
+            }
+        }
+    </script>
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 <!-- ./wrapper -->
