@@ -51,7 +51,7 @@ public class VehicleDetailsServlet extends HttpServlet {
             vehicle = vehicleService.findById(id);
             listReservations = reservationService.findByVehicle(vehicle);
             int nbReservations = listReservations.size();
-
+            request.setAttribute("vehicle", vehicle);
             request.setAttribute("listReservations", listReservations);
             request.setAttribute("nbReservations", nbReservations);
 

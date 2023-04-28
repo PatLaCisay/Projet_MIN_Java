@@ -48,7 +48,7 @@
                                         <a class="btn btn-success" href="${pageContext.request.contextPath}/cars/update?id=${vehicle.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/cars/delete?id=${vehicle.id}">
+                                        <a class="btn btn-danger" onclick="confirmDelete(${vehicle.id})">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
@@ -65,7 +65,17 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        function confirmDelete(id) {
 
+            var response = confirm("Vous allez supprimer ce vehicule, cette action est irreversible.");
+            if (response) {
+                window.location.href="http://localhost:8080/rentmanager/cars/delete?id="+id;
+            } else {
+
+            }
+        }
+    </script>
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 <!-- ./wrapper -->

@@ -27,7 +27,7 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <h3 class="profile-username text-center">${vehicle.constructor} ${vehicle.model}(${vehicle.seats} places)</h3>
+                            <h3 class="profile-username text-center">${vehicle.constructor} ${vehicle.model} (${vehicle.seats} places)</h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
@@ -43,8 +43,7 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#rents" data-toggle="tab">Reservations</a></li>
-                            <li><a href="#users" data-toggle="tab">Clients</a></li>
+                            <li class="active"><h3 href="#rents" data-toggle="tab">Reservations</h3></li>
                         </ul>
                         <div class="tab-content">
                             <div class="box-body no-padding">

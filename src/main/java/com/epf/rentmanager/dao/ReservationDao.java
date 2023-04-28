@@ -23,7 +23,7 @@ public class ReservationDao {
 	@Autowired
 	ClientService clientService;
 	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO Reservation(client_id, vehicle_id, debut, fin) VALUES(?, ?, ?, ?);";
-	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=?;";
+	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=? SET FOREIGN_KEY_CHECKS=0;";
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";

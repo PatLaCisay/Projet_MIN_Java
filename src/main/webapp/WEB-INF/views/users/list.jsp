@@ -48,7 +48,7 @@
                                             <a class="btn btn-success" href="${pageContext.request.contextPath}/users/update?id=${client.id}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/users/delete?id=${client.id}">
+                                            <a class="btn btn-danger" onclick="confirmDelete(${client.id})">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
@@ -65,6 +65,17 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        function confirmDelete(id) {
+
+            var response = confirm("Vous allez supprimer cet utilisateur, cette action est irreversible.");
+            if (response) {
+                window.location.href="http://localhost:8080/rentmanager/users/delete?id="+id;
+            } else {
+
+            }
+        }
+    </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
