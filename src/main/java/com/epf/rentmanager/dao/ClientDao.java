@@ -19,7 +19,9 @@ public class ClientDao {
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 	private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS clientsCount FROM Client;";
-	
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET prenom = ?, nom = ?, email = ?, naissance = ? WHERE id=?;";
+
+
 	public void create(Client client) throws DaoException {
 		Connection connexion = null;
 		try {
@@ -41,16 +43,25 @@ public class ClientDao {
 
 	}
 	
-	public long delete(Client client) throws DaoException {
-		return 0;
+	public void delete(Client client) throws DaoException {
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(DELETE_CLIENT_QUERY);
+
+			pstmt.setLong(1, client.getId());
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<Client> findAll() throws DaoException, SQLException {
 		List<Client> clients = new ArrayList<Client>();
 		try {
-			Connection connexionection = getConnection();
+			Connection conn = getConnection();
 
-			Statement statement = connexionection.createStatement();
+			Statement statement = conn.createStatement();
 
 			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
 
@@ -78,9 +89,9 @@ public class ClientDao {
 		Client client = new Client();
 
 		try {
-			Connection connexionection = getConnection();
+			Connection conn = getConnection();
 
-			Statement statement = connexionection.createStatement();
+			Statement statement = conn.createStatement();
 
 			ResultSet rs = statement.executeQuery(FIND_CLIENTS_QUERY);
 
@@ -118,6 +129,26 @@ public class ClientDao {
 			}
 
 			return clientsCount;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public long update(Client client) throws DaoException {
+		try {
+
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(UPDATE_CLIENT_QUERY);
+
+			pstmt.setString(1, client.getFirstName());
+			pstmt.setString(2, client.getLastName());
+			pstmt.setString(3, client.getEmail());
+			pstmt.setDate(4, Date.valueOf(client.getBirthDate()));
+			pstmt.setLong(5, client.getId());
+
+
+			pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
