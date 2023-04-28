@@ -5,6 +5,7 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,13 @@ public class ReservationService {
     public List<Reservation> findByClient(Client client)throws ServiceException {
         try {
             return this.reservationDao.findByClient(client);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public List<Reservation> findByVehicle(Vehicle vehicle)throws ServiceException {
+        try {
+            return this.reservationDao.findByVehicle(vehicle);
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }

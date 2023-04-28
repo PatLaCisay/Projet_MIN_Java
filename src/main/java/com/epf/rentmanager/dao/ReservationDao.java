@@ -83,10 +83,10 @@ public class ReservationDao {
 				Integer reservationId = rs.getInt("id");
 
 				Vehicle vehicle = vehicleService.findById(rs.getLong("vehicle_id"));
-				LocalDate reservationDebut = rs.getDate("debut").toLocalDate();
-				LocalDate reservationFin = rs.getDate("fin").toLocalDate();
+				LocalDate start = rs.getDate("debut").toLocalDate();
+				LocalDate end = rs.getDate("fin").toLocalDate();
 
-				Reservation reservation = new Reservation(reservationId, client, vehicle, reservationDebut, reservationFin);
+				Reservation reservation = new Reservation(reservationId, client, vehicle, start, end);
 
 				listReservation.add(reservation);
 
@@ -102,8 +102,39 @@ public class ReservationDao {
 		return null;
 	}
 	
-	public List<Reservation> findResaByReservation(long vehicle) throws DaoException {
-		return new ArrayList<Reservation>();
+	public List<Reservation> findByVehicle(Vehicle vehicle) throws DaoException {
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATIONS_BY_VEHICLE_QUERY);
+
+			pstmt.setLong(1, vehicle.getId());
+
+			ResultSet rs = pstmt.executeQuery();
+
+			List<Reservation> listReservation = new ArrayList<>();
+
+			while (rs.next()) {
+
+				Integer reservationId = rs.getInt("id");
+
+				Client client = clientService.findById(rs.getLong("client_id"));
+				LocalDate start = rs.getDate("debut").toLocalDate();
+				LocalDate end = rs.getDate("fin").toLocalDate();
+
+				Reservation reservation = new Reservation(reservationId, client, vehicle, start, end);
+
+				listReservation.add(reservation);
+
+			}
+
+			return listReservation;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+		return null;
 	}
 
 	public List<Reservation> findAll() throws DaoException {
@@ -146,10 +177,10 @@ public class ReservationDao {
 
 			Client reservationClient = clientService.findById(rs.getLong("client_id"));
 			Vehicle reservationVehicle = vehicleService.findById(rs.getLong("vehicle_id"));
-			LocalDate reservationDebut = rs.getDate("debut").toLocalDate();
-			LocalDate reservationFin = rs.getDate("fin").toLocalDate();
+			LocalDate start = rs.getDate("debut").toLocalDate();
+			LocalDate end = rs.getDate("fin").toLocalDate();
 
-			Reservation reservation = new Reservation(id, reservationClient, reservationVehicle, reservationDebut, reservationFin);
+			Reservation reservation = new Reservation(id, reservationClient, reservationVehicle, start, end);
 
 			return reservation;
 
