@@ -9,6 +9,7 @@ com\epf\rentmanager\servlet\UserCreateServlet.class
 com\epf\rentmanager\configuration\AppConfiguration.class
 com\epf\rentmanager\servlet\UserUpdateServlet.class
 com\epf\rentmanager\servlet\VehicleUpdateServlet.class
+com\epf\rentmanager\servlet\UserCreateErrorServlet.class
 com\epf\rentmanager\servlet\ReservationDeleteServlet.class
 com\epf\rentmanager\servlet\VehicleDeleteServlet.class
 com\epf\rentmanager\servlet\UserDeleteServlet.class
