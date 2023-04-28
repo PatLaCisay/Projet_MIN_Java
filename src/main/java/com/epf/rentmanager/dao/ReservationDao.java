@@ -29,6 +29,8 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 	private static final String FIND_RESERVATION_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
 	private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS reservationsCount FROM Reservation;";
+	private static final String UPDATE_RESERVATION_QUERY = "UPDATE Reservation SET client_id = ?, vehicle_id = ?, debut = ?, fin = ? WHERE id=?;";
+
 	public void create(Reservation reservation) throws DaoException {
 		Connection connexion = null;
 		try {
@@ -49,6 +51,17 @@ public class ReservationDao {
 	}
 	
 	public long delete(Reservation reservation) throws DaoException {
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(DELETE_RESERVATION_QUERY);
+
+			pstmt.setLong(1, reservation.getId());
+
+			return pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -161,6 +174,25 @@ public class ReservationDao {
 			}
 
 			return reservationsCount;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public long update(Reservation reservation) throws DaoException {
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(UPDATE_RESERVATION_QUERY);
+
+			pstmt.setLong(1, reservation.getClient().getId());
+			pstmt.setLong(2, reservation.getVehicle().getId());
+			pstmt.setDate(3, Date.valueOf(reservation.getStart()));
+			pstmt.setDate(4, Date.valueOf(reservation.getEnd()));
+			pstmt.setLong(5, reservation.getId());
+
+
+			pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

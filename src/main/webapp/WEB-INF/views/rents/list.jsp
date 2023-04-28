@@ -30,6 +30,7 @@
                                     <th style="width: 10px">#</th>
                                     <th>Voiture</th>
                                     <th>Client</th>
+                                    <th>Email client</th>
                                     <th>Debut</th>
                                     <th>Fin</th>
                                     <th>Action</th>
@@ -40,16 +41,17 @@
                                         <td>${reservation.id}</td>
                                         <td>${reservation.vehicle.constructor} ${reservation.vehicle.model}</td>
                                         <td>${reservation.client.lastName} ${reservation.client.firstName}</td>
+                                        <td>${reservation.client.email}</td>
                                         <td>${reservation.start}</td>
                                         <td>${reservation.end}</td>
                                         <td>
-                                            <a class="btn btn-primary disabled" href="car-detail.html">
+                                            <a class="btn btn-primary" href="car-detail.html">
                                                 <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="${pageContext.request.contextPath}/rents/update?id=${reservation.id}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/rents/delete?id=${reservation.id}">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

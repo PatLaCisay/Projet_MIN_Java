@@ -57,5 +57,22 @@ public class ReservationService {
         }
         return 0;
     }
+    public long delete(Reservation reservation) throws ServiceException {
+        try {
+            return this.reservationDao.delete(reservation);
+        }catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public long update(Reservation reservation) throws ServiceException {
+        try {
+            return this.reservationDao.update(reservation);
+        }catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }
