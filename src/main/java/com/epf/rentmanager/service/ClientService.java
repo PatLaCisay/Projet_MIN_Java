@@ -49,9 +49,27 @@ public class ClientService {
 			throw new RuntimeException(e);
 		}
 	}
+	public void delete(long id) throws ServiceException {
+		try {
+			this.clientDao.delete(this.clientDao.findById(id));
+		} catch (DaoException e) {
+			throw new RuntimeException(e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	public long count() throws ServiceException {
 		try {
 			return this.clientDao.count();
+		}catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public long update(Client client) throws ServiceException {
+		try {
+			return this.clientDao.update(client);
 		}catch (DaoException e) {
 			e.printStackTrace();
 		}
